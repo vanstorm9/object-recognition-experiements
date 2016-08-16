@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+from time import time
 
 new_width = 32
 new_height = 32
@@ -10,6 +11,8 @@ slash = '/'
 root = os.listdir(root_path)
 
 print 'Iterating through folders:'
+
+t0 = time()
 
 # Iterating through the item directories to get dir
 for folders in root:
@@ -30,3 +33,6 @@ for folders in root:
 		saveStr = "../images/" + folders + str(i) + ".jpg"
 		img2.save(saveStr)
 		i = i + 1
+
+total_time = time() - t0
+print 'Resize time: ', total_time, 's'
