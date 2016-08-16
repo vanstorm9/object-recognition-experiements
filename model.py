@@ -12,6 +12,8 @@ from keras.layers.convolutional import Convolution2D
 from keras.layers.convolutional import MaxPooling2D
 from keras.utils import np_utils
 
+from sklearn.metrics import confusion_matrix
+
 import imageDataExtract as dataset
 
 
@@ -65,3 +67,8 @@ model.fit(X_train, y_train, validation_data=(X_test, y_test), nb_epoch=epochs, b
 # Final evaluation of the model
 scores = model.evaluate(X_test, y_test, verbose=0)
 print("Accuracy: %.2f%%" % (scores[1]*100))
+
+
+print ' '
+print 'Confusion Matrix:'
+print confusion_matrix(y_test, X_test)
