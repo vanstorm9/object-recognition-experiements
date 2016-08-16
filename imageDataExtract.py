@@ -20,14 +20,15 @@ for folders in root:
 	j = 0
 	for files in os.listdir(root_path + folders):
 		imgO = Image.open(root_path + folders + files)
-		img = np.array(imgO)
-		
+		img = np.array(imgO).transpose()
+	
+	
 		if i == 0:
 			# This is our first time with the image, so we initalize our main array
 			main_ar = np.array([img])
 		else:
 			# We will just concatenate the array then
-			main_ar = np.concatenate((main_ar, [img]))
+			main_ar = np.concatenate(([img], main_ar))
 
 		i = i + 1
 

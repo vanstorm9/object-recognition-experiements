@@ -1,7 +1,11 @@
 from PIL import Image
 import os
 
-root_path = '../images'
+new_width = 75
+new_height = 75
+
+
+root_path = '../images/'
 slash = '/'
 root = os.listdir(root_path)
 
@@ -21,8 +25,6 @@ for folders in root:
 		height = img.size[1]
 
 		
-		new_width = 300
-		new_height = 300
 		img2 = img.resize((new_width, new_height), Image.ANTIALIAS)
 
 		saveStr = "../images/" + folders + str(i) + ".jpg"
