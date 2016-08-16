@@ -68,7 +68,21 @@ model.fit(X_train, y_train, validation_data=(X_test, y_test), nb_epoch=epochs, b
 scores = model.evaluate(X_test, y_test, verbose=0)
 print("Accuracy: %.2f%%" % (scores[1]*100))
 
-
+'''
 print ' '
 print 'Confusion Matrix:'
 print confusion_matrix(y_test, X_test)
+'''
+# Saving the model
+
+model_json = model.to_json()
+
+# serialize the model to JSON
+model_json = model.to_json()
+with open("models/model.json","w") as json_file:
+	json_file.write(model_json)
+
+# serialize weights to HDF5
+model.save_weights("models/model.h5")
+print ''
+print "Saved model to disk"
