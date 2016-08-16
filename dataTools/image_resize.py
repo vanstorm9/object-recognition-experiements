@@ -1,8 +1,8 @@
 from PIL import Image
 import os
 
-new_width = 75
-new_height = 75
+new_width = 32
+new_height = 32
 
 
 root_path = '../images/'

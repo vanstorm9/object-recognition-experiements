@@ -26,6 +26,7 @@ X_test = X_test.astype('float32')
 print X_train.shape
 print X_test.shape
 
+print y_test
 
 X_train = X_train / 255.0
 X_test = X_test / 255.0

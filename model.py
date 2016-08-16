@@ -1,7 +1,7 @@
 # Simple CNN model for CIFAR-10
 
 import numpy
-from keras.datasets import cifar10
+
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
@@ -12,12 +12,16 @@ from keras.layers.convolutional import Convolution2D
 from keras.layers.convolutional import MaxPooling2D
 from keras.utils import np_utils
 
+import imageDataExtract as dataset
+
+
 # fix random seed for reproducibility
 seed = 7
 numpy.random.seed(seed)
 
 # load data
-(X_train, y_train), (X_test, y_test) = cifar10.load_data()
+#(X_train, y_train), (X_test, y_test) = dataset.load_data()
+X_train, y_train, X_test, y_test = dataset.load_data()
 
 # normalize inputs from 0-255 to 0.0-1.0
 X_train = X_train.astype('float32')
@@ -25,6 +29,8 @@ X_test = X_test.astype('float32')
 
 print X_train.shape
 print X_test.shape
+
+
 
 X_train = X_train / 255.0
 X_test = X_test / 255.0
