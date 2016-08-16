@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-root_path = '../../dataset/'
+root_path = '../../../dataset/'
 slash = '/'
 root = os.listdir(root_path)
 
@@ -31,6 +31,6 @@ for folders in root:
 				half_height+250
 			)
 		)
-		saveStr = "images/" + folders + str(i) + ".jpg"
+		saveStr = "../images/" + folders + str(i) + ".jpg"
 		img2.save(saveStr)
 		i = i + 1
