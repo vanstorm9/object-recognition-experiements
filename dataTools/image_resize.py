@@ -15,7 +15,7 @@ for folders in root:
 	folders = folders + slash
 
 	i = 0
-	for files in os.listdir(root_path + folders):
+	for files in os.listdir(root_path + slash + folders):
 		img = Image.open(root_path + folders + files)
 		width = img.size[0]
 		height = img.size[1]
