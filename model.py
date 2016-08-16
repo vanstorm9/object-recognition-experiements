@@ -1,6 +1,6 @@
 # Simple CNN model for CIFAR-10
-
 import numpy
+from time import time
 
 from keras.models import Sequential
 from keras.layers import Dense
@@ -53,6 +53,10 @@ model.add(Dense(512, activation='relu', W_constraint=maxnorm(3)))
 model.add(Dropout(0.5))
 model.add(Dense(num_classes, activation='softmax'))
 
+
+t0 = time()
+
+
 # Compile model
 epochs = 25
 lrate = 0.01
@@ -63,6 +67,11 @@ print(model.summary())
 
 # Fit the model
 model.fit(X_train, y_train, validation_data=(X_test, y_test), nb_epoch=epochs, batch_size=32)
+
+print 'Training time:'
+total_time = time() - t0
+print total_time, 's'
+
 
 # Final evaluation of the model
 scores = model.evaluate(X_test, y_test, verbose=0)
