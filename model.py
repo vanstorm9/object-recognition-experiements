@@ -1,5 +1,6 @@
 # Simple CNN model for CIFAR-10
 import numpy
+import matplotlib.pyplot as plt
 from time import time
 
 from keras.models import Sequential
@@ -17,13 +18,33 @@ from sklearn.metrics import confusion_matrix
 import imageDataExtract as dataset
 
 
+response = 'a'
+
+# Will ask the user whether he wants to load or create new matrix
+while True:
+	print 'Press [l] to load matrix or [n] to create new dataset'
+	response = raw_input()
+
+	if response == 'l':
+		break
+	if response == 'n':
+		break
+
+
+
+
 # fix random seed for reproducibility
 seed = 7
 numpy.random.seed(seed)
 
 # load data
-#(X_train, y_train), (X_test, y_test) = dataset.load_data()
-X_train, y_train, X_test, y_test = dataset.load_data()
+if response == 'l':
+	matrix_path = 'numpy-matrix/main.npy'
+	label_path = 'numpy-matrix/label.npy'
+	X_train, y_train, X_test, y_test = dataset.load_matrix(matrix_path, label_path)
+
+else:
+	X_train, y_train, X_test, y_test = dataset.load_data()
 
 # normalize inputs from 0-255 to 0.0-1.0
 X_train = X_train.astype('float32')
@@ -66,7 +87,7 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 print(model.summary())
 
 # Fit the model
-model.fit(X_train, y_train, validation_data=(X_test, y_test), nb_epoch=epochs, batch_size=32)
+history = model.fit(X_train, y_train, validation_data=(X_test, y_test), nb_epoch=epochs, batch_size=32)
 
 print 'Training time:'
 total_time = time() - t0
@@ -95,3 +116,29 @@ with open("models/model.json","w") as json_file:
 model.save_weights("models/model.h5")
 print ''
 print "Saved model to disk"
+
+
+
+# Plotting the data
+
+# list all data in history
+print history.history.keys()
+
+# summarize history for accuracy
+plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train','test'], loc='upper left')
+plt.show()
+
+# summarize history for loss
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train','test'], loc='upper left')
+plt.show()
+
