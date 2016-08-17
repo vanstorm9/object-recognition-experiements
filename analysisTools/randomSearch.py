@@ -15,7 +15,8 @@ from keras.layers.convolutional import Convolution2D
 from keras.layers.convolutional import MaxPooling2D
 from keras.utils import np_utils
 
-from sklearn.grid_search import GridSearchCV
+from sklearn.grid_search import RandomizedSearchCV
+from scipy.stats import uniform as sp_rand
 from keras.wrappers.scikit_learn import KerasClassifier
 
 
@@ -92,13 +93,16 @@ model = KerasClassifier(build_fn=create_model, verbose=0)
 batch_size = [10,20,32,50,60,80,100]
 epochs = [15, 20, 25, 30, 40]
 
+param_grid = {'kernel': sp_rand()}
+
 param_grid = dict(batch_size=batch_size, nb_epoch=epochs)
-grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1)
+grid = RandomizedSearchCV(estimator=model, param_distributions=param_grid, n_iter=100)
 
 t0 = time()
 
 print 'Analyzing model. This can take a while . . .'
 grid_result = grid.fit(X,y)
+print grid
 
 total_time = time() - t0
 print 'Analysis time: ',total_time,' s'
