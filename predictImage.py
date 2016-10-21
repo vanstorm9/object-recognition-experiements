@@ -126,66 +126,28 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 
 ## Prediction phase ##
 
-#____
-#img0 = Image.open(imgToLoad)
-#___
-#pil_im = img0.resize((32,32), Image.ANTIALIAS) 
-
-
-#test_img = numpy.array(pil_im.convert('RGB')).transpose()
-#test_img = numpy.array([numpy.array(test_img)])
-
-#___
-#test_img = numpy.array([cv2.imread(imgToLoad).transpose()])
-#____
-
 imgO = Image.open(imgToLoad)
 imgO = imgO.resize((32,32), Image.ANTIALIAS) 
 test_img = numpy.array(imgO).transpose()
 
 
 test_img = test_img.reshape((1,) + test_img.shape)
-print test_img.shape
+#print test_img.shape
 
 
 # normalizing inputs
 test_img = test_img.astype('float32')
 test_img = test_img / 255.0
 
+#print test_img.shape
 
-
-#cv2.imshow('test', test_img.transpose())
-cv2.imwrite('0.jpg', x_mat[0].transpose())
-#cv2.imwrite('1.jpg', test_img[0].transpose())
-
-
-
-#cv2.imshow('test', test_img[0].transpose())
-
-#cv2.imshow('test', x_mat[0].transpose())
-#cv2.waitKey(0)
-
-#print '-----'
-#print x_mat[0].transpose().shape
-#print test_img[0].transpose().shape
-
-
-#cv2.imshow('test', test_img[0].transpose())
-#cv2.waitKey(0)
-
-print test_img.shape
-
-
-
-#pred = model.predict_classes(numpy.array([x_mat[0]]), 1, verbose=0)
-#print labelName[pred[0]]
 
 pred = model.predict_classes(test_img, 1, verbose=0)
 
 print labelName
 #print label_matrix
 #print labelPath
-print pred
+#print pred
 
 print ''
 print 'Prediction:'
