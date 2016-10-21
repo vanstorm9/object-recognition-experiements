@@ -32,12 +32,20 @@ def load_data():
 	for folders in root:
 		print '-',folders
 
+		if labelnum == 0:
+			labelName = np.array(([folders]))
+		else:
+			labelName = np.concatenate((labelName, [folders]))
+
 
 		folders = folders + slash
 		
 		j = 0
 		for files in os.listdir(root_path + folders):
 			imgO = Image.open(root_path + folders + files)
+
+			pathStr = root_path + folders + files
+
 			img = np.array(imgO).transpose()
 		
 		
@@ -45,10 +53,12 @@ def load_data():
 				# This is our first time with the image, so we initalize our main array
 				main_ar = np.array([img])
 				label = np.array([labelnum])
+				labelPath = np.array([pathStr])
 			else:
 				# We will just concatenate the array then
 				main_ar = np.concatenate(([img], main_ar))
 				label = np.concatenate((label, [labelnum]))
+				labelPath = np.concatenate((labelPath, [pathStr]))
 
 			# Adding our label array
 			i = i + 1
@@ -65,6 +75,8 @@ def load_data():
 	# We are going to save our matrix and label array
 	np.save('numpy-matrix/main.npy', main_ar)
 	np.save('numpy-matrix/label.npy', label)
+	np.save('numpy-matrix/labelName.npy', labelName)
+	np.save('numpy-matrix/labelPath.npy', labelPath)
 	
 	print 'Successfully saved numpy arrays!'
 
