@@ -27,18 +27,26 @@ import cv2
 
 #imgToLoad = './test-images/imagesToTest/0.jpg'
 #imgToLoad = './test-images/imagesToTest/1.jpg'
-#imgToLoad = './test-images/imagesToTest/2.jpg'
+imgToLoad = './test-images/imagesToTest/2.jpg'
 #imgToLoad = './test-images/imagesToTest/3.jpg'
 #imgToLoad = './test-images/imagesToTest/4.jpg'
 #imgToLoad = './test-images/imagesToTest/5.jpg'
 #imgToLoad = './test-images/imagesToTest/6.jpg'
 #imgToLoad = './test-images/imagesToTest/7.jpg'
 #imgToLoad = './test-images/imagesToTest/8.jpg'
-imgToLoad = './test-images/imagesToTest/9.jpg'
+#imgToLoad = './test-images/imagesToTest/9.jpg'
 
 
 #modelPath = "models/model-0.h5"
-modelPath = "models/overfit-model.h5"
+#modelPath = "models/overfit-model.h5"
+modelPath = "models/model.h5"
+
+
+def printPrediction(pred):
+	if pred >= 10 and pred <=15:
+		print labelName[pred+1]
+	else:
+		print labelName[pred]
 
 
 # fix random seed for reproducibility
@@ -74,27 +82,6 @@ x_mat = x_mat / 255.0
 # one hot encode outputs
 y_mat = np_utils.to_categorical(label_matrix)
 num_classes = y_mat.shape[1]
-
-'''
-X_train, y_train, X_test, y_test = dataset.load_matrix(matrix_path, label_path)
-
-labelName = numpy.load(labelName_path)
-
-
-# normalize inputs from 0-255 to 0.0-1.0
-x_train = x_train.astype('float32')
-x_test = x_test.astype('float32')
-
-
-X_train = X_train / 255.0
-X_test = X_test / 255.0
-
-# one hot encode outputs
-y_train = np_utils.to_categorical(y_train)
-y_test = np_utils.to_categorical(y_test)
-num_classes = y_test.shape[1]
-
-'''
 
 
 # Create the model
@@ -132,7 +119,6 @@ test_img = numpy.array(imgO).transpose()
 
 
 test_img = test_img.reshape((1,) + test_img.shape)
-#print test_img.shape
 
 
 # normalizing inputs
@@ -144,17 +130,23 @@ test_img = test_img / 255.0
 
 pred = model.predict_classes(test_img, 1, verbose=0)
 
-print labelName
+### To view all labels
+#print labelName
+###
+
 #print label_matrix
 #print labelPath
 #print pred
 
 print ''
 print 'Prediction:'
-# Don't understand the intuition this format
+
+predVal = 26-1-pred[0]   # Still trying to identify the intution of this encoding
+
+printPrediction(predVal)
 
 
-print labelName[25-1-pred[0]]
+#print labelName[26-1-pred[0]]
 
 
 print ''

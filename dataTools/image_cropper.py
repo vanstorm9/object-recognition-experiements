@@ -28,8 +28,8 @@ for folders in root:
 		img2 = img.crop(
 			(
 				half_width-200,
-				half_height-300,
-				half_width+400,
+				half_height-200,
+				half_width+200,
 				half_height+250
 			)
 		)
