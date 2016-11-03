@@ -27,19 +27,19 @@ import cv2
 
 #imgToLoad = './test-images/imagesToTest/0.jpg'
 #imgToLoad = './test-images/imagesToTest/1.jpg'
-imgToLoad = './test-images/imagesToTest/2.jpg'
+#imgToLoad = './test-images/imagesToTest/2.jpg'
 #imgToLoad = './test-images/imagesToTest/3.jpg'
 #imgToLoad = './test-images/imagesToTest/4.jpg'
 #imgToLoad = './test-images/imagesToTest/5.jpg'
 #imgToLoad = './test-images/imagesToTest/6.jpg'
 #imgToLoad = './test-images/imagesToTest/7.jpg'
 #imgToLoad = './test-images/imagesToTest/8.jpg'
-#imgToLoad = './test-images/imagesToTest/9.jpg'
+imgToLoad = './test-images/imagesToTest/9.jpg'
 
 
 #modelPath = "models/model-0.h5"
 #modelPath = "models/overfit-model.h5"
-modelPath = "models/model.h5"
+modelPath = "models/model-2.h5"
 
 
 def printPrediction(pred):
