@@ -37,9 +37,7 @@ import cv2
 imgToLoad = './test-images/imagesToTest/9.jpg'
 
 
-#modelPath = "models/model-0.h5"
-#modelPath = "models/overfit-model.h5"
-modelPath = "models/model-2.h5"
+modelPath = "models/model-0.h5"
 
 
 def printPrediction(pred):
