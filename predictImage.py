@@ -37,7 +37,8 @@ import cv2
 imgToLoad = './test-images/imagesToTest/9.jpg'
 
 
-modelPath = "models/model-0.h5"
+#modelPath = "models/model-0.h5"
+modelPath = "models/model.h5"
 
 
 def printPrediction(pred):
@@ -57,10 +58,18 @@ numpy.random.seed(seed)
 #label_path = 'numpy-matrix/label-0.npy'
 #labelName_path = 'numpy-matrix/labelName-0.npy'
 
+'''
 matrix_path = 'numpy-matrix/main.npy'
 label_path = 'numpy-matrix/label.npy'
 labelName_path = 'numpy-matrix/labelName.npy'
 labelPath_path = 'numpy-matrix/labelPath.npy'
+'''
+
+
+matrix_path = 'numpy-matrix/main-custom.npy'
+label_path = 'numpy-matrix/label-custom.npy'
+labelName_path = 'numpy-matrix/labelName-custom.npy'
+labelPath_path = 'numpy-matrix/labelPath-custom.npy'
 
 
 main_matrix = numpy.load(matrix_path)
@@ -139,10 +148,13 @@ pred = model.predict_classes(test_img, 1, verbose=0)
 print ''
 print 'Prediction:'
 
-predVal = 26-1-pred[0]   # Still trying to identify the intution of this encoding
 
-printPrediction(predVal)
+print labelName[19 - pred[0] - 5]   # This is for the new dataset
+####################
+#predVal = 26-1-pred[0]   # Still trying to identify the intution of this encoding
 
+#printPrediction(predVal)
+###################
 
 #print labelName[26-1-pred[0]]
 

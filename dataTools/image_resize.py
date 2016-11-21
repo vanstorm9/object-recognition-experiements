@@ -6,7 +6,8 @@ new_width = 32
 new_height = 32
 
 
-root_path = '../images/'
+#root_path = '../images-custom/'
+root_path = '../../../test/'
 slash = '/'
 root = os.listdir(root_path)
 
@@ -30,7 +31,7 @@ for folders in root:
 		
 		img2 = img.resize((new_width, new_height), Image.ANTIALIAS)
 
-		saveStr = "../images/" + folders + str(i) + ".jpg"
+		saveStr = "../images-custom/" + folders + str(i) + ".jpg"
 		img2.save(saveStr)
 		i = i + 1
 

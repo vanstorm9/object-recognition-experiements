@@ -19,7 +19,7 @@ def load_matrix(matrix_path, label_path):
 
 
 def load_data():
-	root_path = 'images/'
+	root_path = 'images-custom/'
 	slash = '/'
 	root = os.listdir(root_path)
 
