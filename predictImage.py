@@ -9,6 +9,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.layers import Flatten
+
 from keras.constraints import maxnorm
 from keras.optimizers import SGD
 from keras.layers.convolutional import Convolution2D
@@ -24,6 +25,9 @@ import imageDataExtract as dataset
 
 from PIL import Image
 import cv2
+
+import theano
+
 
 #imgToLoad = './test-images/imagesToTest/0.jpg'
 #imgToLoad = './test-images/imagesToTest/1.jpg'
@@ -151,14 +155,6 @@ print 'Prediction:'
 
 
 print labelName[19 - pred[0] - 5]   # This is for the new dataset
-####################
-#predVal = 26-1-pred[0]   # Still trying to identify the intution of this encoding
-
-#printPrediction(predVal)
-###################
-
-#print labelName[26-1-pred[0]]
-
 
 print ''
 print ''
